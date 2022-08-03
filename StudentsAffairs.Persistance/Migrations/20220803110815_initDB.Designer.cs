@@ -10,8 +10,8 @@ using StudentsAffairs.Persistance;
 namespace StudentsAffairs.Persistance.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220803094752_applyDataSeeding")]
-    partial class applyDataSeeding
+    [Migration("20220803110815_initDB")]
+    partial class initDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -181,14 +181,14 @@ namespace StudentsAffairs.Persistance.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "c845a4f6-9ea7-4cf9-ab23-1d237d6fcb7e",
+                            ConcurrencyStamp = "efd0b672-6284-4656-9e2b-f8cbb4e95e5c",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "75989092-1521-45d6-83ed-1cc019aca027",
+                            ConcurrencyStamp = "03b2a7f3-026f-4194-961d-e88c2ecb29f1",
                             Name = "SuperAdmin",
                             NormalizedName = "SUPERADMIN"
                         });
@@ -230,8 +230,7 @@ namespace StudentsAffairs.Persistance.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassId")
-                        .IsUnique();
+                    b.HasIndex("ClassId");
 
                     b.ToTable("Students");
                 });
@@ -360,8 +359,8 @@ namespace StudentsAffairs.Persistance.Migrations
             modelBuilder.Entity("StudentsAffairs.Persistance.Data.Entities.Student", b =>
                 {
                     b.HasOne("StudentsAffairs.Persistance.Data.Entities.Class", "Class")
-                        .WithOne("Student")
-                        .HasForeignKey("StudentsAffairs.Persistance.Data.Entities.Student", "ClassId")
+                        .WithMany("Student")
+                        .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

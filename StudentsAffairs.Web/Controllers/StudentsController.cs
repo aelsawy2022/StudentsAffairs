@@ -25,7 +25,7 @@ namespace StudentsAffairs.Web.Controllers
 
         public async Task<IActionResult> Index(
             string className = null,
-            int currentPage = 1, int maxRows = 10,
+            int currentPage = 1, int maxRows = 2,
             string searchBtn = null
             )
         {

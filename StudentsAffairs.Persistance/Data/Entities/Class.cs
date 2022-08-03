@@ -11,6 +11,6 @@ namespace StudentsAffairs.Persistance.Data.Entities
         public string Name { get; set; }
 
 
-        public Student Student { get; set; }
+        public ICollection<Student> Student { get; set; }
     }
 }

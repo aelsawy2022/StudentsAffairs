@@ -195,6 +195,24 @@ namespace StudentsAffairs.Persistance.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { 1, "efd0b672-6284-4656-9e2b-f8cbb4e95e5c", "Admin", "ADMIN" },
+                    { 2, "03b2a7f3-026f-4194-961d-e88c2ecb29f1", "SuperAdmin", "SUPERADMIN" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Classes",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "Class 1" },
+                    { 2, "Class 2" }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -237,8 +255,7 @@ namespace StudentsAffairs.Persistance.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Students_ClassId",
                 table: "Students",
-                column: "ClassId",
-                unique: true);
+                column: "ClassId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

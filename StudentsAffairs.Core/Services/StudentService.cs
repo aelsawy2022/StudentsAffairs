@@ -34,20 +34,27 @@ namespace StudentsAffairs.Core.Services
 
         public async Task<bool> CreateStudent(StudentModel model)
         {
-            Student student = _mapper.Map<Student>(model);
-            student.StudentGuid = Guid.NewGuid();
-            student.Class = await _classRepository.GetByIDAsync(student.ClassId);
-
-            if (model.ImageFile != null)
+            try
             {
-                bool isDeleted = await _imageService.DeleteCurrentImageIfExists(student.Photo);
-                if(isDeleted) student.Photo = await _imageService.UploadImage(model.ImageFile);
+                Student student = _mapper.Map<Student>(model);
+                student.StudentGuid = Guid.NewGuid();
+                student.Class = await _classRepository.GetByIDAsync(student.ClassId);
+
+                if (model.ImageFile != null)
+                {
+                    bool isDeleted = await _imageService.DeleteCurrentImageIfExists(student.Photo);
+                    if (isDeleted) student.Photo = await _imageService.UploadImage(model.ImageFile);
+                }
+
+                await _studentRepository.AddAsync(student);
+                await _studentRepository.SaveAsync();
+
+                return true;
             }
-
-            await _studentRepository.AddAsync(student);
-            await _studentRepository.SaveAsync();
-
-            return true;
+            catch(Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task<bool> DeleteStudent(Guid id)
@@ -64,7 +71,7 @@ namespace StudentsAffairs.Core.Services
 
         public async Task<List<StudentModel>> GetAllStudents()
         {
-            List<Student> students = await _studentRepository.GetAllAsync() as List<Student>;
+            List<Student> students = await _studentRepository.GetAllAsync(null, "Class", null, null, false) as List<Student>;
             return _mapper.Map<List<StudentModel>>(students);
         }
 

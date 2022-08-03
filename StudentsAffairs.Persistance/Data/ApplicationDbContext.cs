@@ -16,6 +16,10 @@ namespace StudentsAffairs.Persistance
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Class>()
+                .HasMany(c => c.Student)
+                .WithOne(e => e.Class);
+
             modelBuilder.Entity<Role>().HasData(
                             new Role { Id = 1, Name = "Admin", NormalizedName = "ADMIN" },
                             new Role { Id = 2, Name = "SuperAdmin", NormalizedName = "SUPERADMIN" });
