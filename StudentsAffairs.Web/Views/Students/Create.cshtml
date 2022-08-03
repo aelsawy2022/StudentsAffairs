@@ -1,0 +1,119 @@
+﻿@model StudentsAffairs.ViewModels.StudentViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.Error))
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.Error
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<h1>Create Student</h1>
+<hr />
+
+<form enctype="multipart/form-data" asp-action="Create">
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="col-md-4">
+
+            <div class="form-group">
+                <label asp-for="Student.ImageFile" class="control-label"></label>
+                <div class="custom-file">
+                    <input asp-for="Student.ImageFile" type="file" class="custom-file-input" id="customFile">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Student.Name" class="control-label"></label>
+                <input asp-for="Student.Name" class="form-control" />
+                <span asp-validation-for="Student.Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Student.Email" class="control-label"></label>
+                <input asp-for="Student.Email" class="form-control" />
+                <span asp-validation-for="Student.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+
+        <div class="col-1"></div>
+
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="Student.Gender" class="control-label">Gender</label>
+                <select id="drpEmpList" class="form-control"
+                        asp-for="Student.Gender">
+                    <option value="">--Select--</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+                <input type="hidden" asp-for="Student.Gender" />
+                <span asp-validation-for="Student.Gender" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Student.Address" class="control-label"></label>
+                <input asp-for="Student.Address" class="form-control" />
+                <span asp-validation-for="Student.Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Student.PhoneNumber" class="control-label"></label>
+                <input asp-for="Student.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Student.PhoneNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Student.Birthdate" class="control-label"></label>
+                <input type="date" asp-for="Student.Birthdate" class="form-control" />
+                <span asp-validation-for="Student.Birthdate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Student.ClassId" class="control-label">Classes</label>
+                <select id="drpEmpList" class="form-control"
+                        asp-for="Student.ClassId"
+                        asp-items="@(new SelectList(Model.Classes, "Id", "Name"))">
+                    <option value="">--Select--</option>
+                </select>
+                <input type="hidden" asp-for="Student.ClassId" />
+                <span asp-validation-for="Student.ClassId" class="text-danger"></span>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        $(document).ready(function() {
+            $('.custom-file-input').on("change", function() {
+                var fileLabel = $(this).next('.custom-file-label');
+                var files = $(this)[0].files;
+                if (files.length > 1) {
+                    fileLabel.html(files.length + ' files selected');
+                }
+                else if (files.length == 1) {
+                    fileLabel.html(files[0].name);
+                }
+            });
+        });
+    </script>
+    }  

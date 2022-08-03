@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using StudentsAffairs.Persistance.Data.Entities
+@inject SignInManager<User> SignInManager
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <h1 class="display-4">Welcome @User.Identity.Name</h1>
+        <p>Click on Students tab to manage students</p>
+    }
+    else
+    {
+        <h1 class="display-4">Welcome</h1>
+        <p>Please login to be able to see Students</p>
+    }
+</div>

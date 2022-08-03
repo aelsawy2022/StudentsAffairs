@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentsAffairs.Models\StudentsAffairs.Models.csproj" />
+    <ProjectReference Include="..\StudentsAffairs.Persistance\StudentsAffairs.Persistance.csproj" />
+  </ItemGroup>
+
+</Project>

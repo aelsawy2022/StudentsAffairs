@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220802103910_initDB.cs" />
+    <Compile Remove="Migrations\20220802103910_initDB.Designer.cs" />
+    <Compile Remove="Migrations\20220802205643_updateDB.cs" />
+    <Compile Remove="Migrations\20220802205643_updateDB.Designer.cs" />
+    <Compile Remove="Migrations\20220802210216_updateClassTbl.cs" />
+    <Compile Remove="Migrations\20220802210216_updateClassTbl.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.21" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.21" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.21" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+</Project>
