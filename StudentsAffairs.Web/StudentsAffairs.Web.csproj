@@ -25,4 +25,8 @@
     <ProjectReference Include="..\StudentsAffairs.ViewModels\StudentsAffairs.ViewModels.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Upload\Images\" />
+  </ItemGroup>
+
 </Project>
